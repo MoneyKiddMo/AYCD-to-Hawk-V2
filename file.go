@@ -117,7 +117,7 @@ func writeHawk(hawk *[]Hawkmesh) error {
 	}
 
 	ioutil.WriteFile("hawkexport.json", jsonHawk, 0644)
-	color.HiGreen("[SUCCESS] Successfully Converted Profiles.")
+	color.HiGreen("[SUCCESS] Successfully Converted %d Profiles.", len(*hawk))
 
 	return nil
 }
