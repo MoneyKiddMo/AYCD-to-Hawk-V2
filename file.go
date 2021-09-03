@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"regexp"
@@ -15,6 +14,7 @@ func readJson() (*[]Hawkmesh, error) {
 	var aycd []Aycd
 	var hawkProfiles []Hawkmesh
 	var houseNum string
+	var billingNum string
 
 	aycdFile, err := os.Open("aycd.json")
 	if err != nil {
@@ -27,7 +27,6 @@ func readJson() (*[]Hawkmesh, error) {
 	aycdData, _ := ioutil.ReadAll(aycdFile)
 
 	json.Unmarshal(aycdData, &aycd)
-	fmt.Println(len(aycd))
 
 	for _, p := range aycd {
 		nameArray := strings.Fields(p.Shippingaddress.Name)
@@ -47,7 +46,18 @@ func readJson() (*[]Hawkmesh, error) {
 			}
 		}
 
-		billingHouse := re.FindAllString(p.Billingaddress.Line1, -1)
+		billingNumber := re.FindAllString(p.Billingaddress.Line1, -1)
+		if len(billingNumber) > 0 {
+			billingNum = billingNumber[0]
+		} else {
+			billingNumber2 := re.FindAllString(p.Billingaddress.Line2, -1)
+			if len(billingNumber2) > 0 {
+				billingNum = billingNumber2[0]
+			} else {
+				color.Red("[ERROR] Error Parsing House Number, Setting as 0...")
+				houseNum = "0"
+			}
+		}
 
 		hawkProfiles = append(hawkProfiles, Hawkmesh{
 			Name: p.Name,
@@ -60,7 +70,7 @@ func readJson() (*[]Hawkmesh, error) {
 				City:         p.Shippingaddress.City,
 				Postalcode:   p.Shippingaddress.Postcode,
 				Phone:        p.Shippingaddress.Phone,
-				State:        p.Shippingaddress.State,
+				State:        stateparser[p.Shippingaddress.State],
 				Housenumber:  houseNum,
 			},
 			Email:    p.Shippingaddress.Email,
@@ -74,8 +84,8 @@ func readJson() (*[]Hawkmesh, error) {
 				City:         p.Billingaddress.City,
 				Postalcode:   p.Billingaddress.Postcode,
 				Phone:        p.Billingaddress.Phone,
-				State:        p.Billingaddress.State,
-				Housenumber:  billingHouse[0],
+				State:        stateparser[p.Billingaddress.State],
+				Housenumber:  billingNum,
 			},
 			Billingsameasshipping: p.Samebillingandshippingaddress,
 			Paymenttype:           "CreditCard",

@@ -8,7 +8,7 @@ var countries = map[string]string{
 	"Belgium":        "BE",
 	"Spain":          "ES",
 	"Luxembourg":     "LU",
-	"United Kingdom": "UK",
+	"United Kingdom": "GB",
 	"Netherlands":    "NL",
 	"Italy":          "IT",
 	"Ireland":        "IE",
@@ -43,4 +43,8 @@ var expyear = map[string]int{
 	"2028": 28,
 	"2029": 29,
 	"2030": 30,
+}
+
+var stateparser = map[string]interface{}{
+	"": nil,
 }
