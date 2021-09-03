@@ -10,4 +10,4 @@ Profile Converter from AYCD Json to HawkMesh V2 Json
 3. Run the converter. Import profiles through HawkMesh Profiles tab.
 
 # Supported Countries:
-US, CA, FR, DE, BE, ES, LU, UK, NL, IT, IE, PT, DK, AT
+US, CA, FR, DE, BE, ES, LU, UK, NL, IT, IE, PT, DK, AT, PL, SE
