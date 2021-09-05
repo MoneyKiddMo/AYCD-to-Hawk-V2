@@ -15,4 +15,4 @@ Supported Version of Golang. Can be installed at https://golang.org/dl/
 4. Open HawkMesh and import the hawkexport.json file the profiles tab.
 
 # Supported Countries
-US, CA, FR, DE, BE, ES, LU, UK, NL, IT, IE, PT, DK, AT, PL, SE
+US, CA, FR, DE, BE, ES, LU, UK, NL, IT, IE, PT, DK, AT, PL, SE, SG, MY, TH
