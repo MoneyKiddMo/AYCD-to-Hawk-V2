@@ -17,6 +17,9 @@ var countries = map[string]string{
 	"Austria":        "AT",
 	"Poland":         "PL",
 	"Sweden":         "SE",
+	"Malaysia": 	  "MY",
+	"Singapore":	  "SG",
+	"Thailand":		  "TH",
 }
 
 var expmonth = map[string]int{
