@@ -1,5 +1,14 @@
 package main
 
+type Config struct {
+	Profilesettings Profilesettings `json:"profileSettings"`
+}
+type Profilesettings struct {
+	Randomphone     bool `json:"randomPhone"`
+	Randomfirstname bool `json:"randomFirstname"`
+	Randomlastname  bool `json:"randomLastname"`
+	Randomline2     bool `json:"randomLine2"`
+}
 type Aycd struct {
 	Name                          string          `json:"name"`
 	Size                          string          `json:"size"`

@@ -1,0 +1,8 @@
+{
+	"profileSettings": {
+		"randomPhone": true,
+		"randomFirstname": true,
+		"randomLastname": true,
+		"randomLine2": true
+	}
+}

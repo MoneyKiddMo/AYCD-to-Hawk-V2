@@ -54,14 +54,16 @@ func main() {
 	fmt.Println(kissing)
 	color.HiCyan("\n\n				    AYCD to Hawk V2 Profile Converter | Developed By jc2#9899")
 
-	hawkData, err := readJson()
+	config, _ := readConfig()
+
+	hawkData, err := readJson(config)
 	if err != nil {
 		color.Red("[ERROR] main.readJson Error Executing Func: %s\n%s", err, "Closing Program in 3 Seconds...")
 		time.Sleep(time.Second * 3)
 		os.Exit(0)
 	}
 
-	writeErr := writeHawk(*&hawkData)
+	writeErr := writeHawk(hawkData)
 	if writeErr != nil {
 		color.Red("[ERROR] main.WriteHawk Error In Function: %s\n%s", err, "Closing Program in 3 Seconds...")
 		time.Sleep(time.Second * 3)

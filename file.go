@@ -10,11 +10,28 @@ import (
 	"github.com/fatih/color"
 )
 
-func readJson() (*[]Hawkmesh, error) {
+func readJson(config *Config) (*[]Hawkmesh, error) {
 	var aycd []Aycd
 	var hawkProfiles []Hawkmesh
 	var houseNum string
 	var billingNum string
+	var randomPhone bool
+	var randomFirst bool
+	var randomLast bool
+	var randomLine2 bool
+
+	if config.Profilesettings.Randomphone {
+		randomPhone = true
+	}
+	if config.Profilesettings.Randomfirstname {
+		randomFirst = true
+	}
+	if config.Profilesettings.Randomlastname {
+		randomLast = true
+	}
+	if config.Profilesettings.Randomline2 {
+		randomLine2 = true
+	}
 
 	aycdFile, err := os.Open("aycd.json")
 	if err != nil {
@@ -98,10 +115,10 @@ func readJson() (*[]Hawkmesh, error) {
 			},
 			Onecheckout:            p.Onlycheckoutonce,
 			Randomemail:            false,
-			Randomfirstname:        false,
-			Randomphone:            false,
-			Randomsecondaryaddress: false,
-			Randomlastname:         false,
+			Randomfirstname:        randomFirst,
+			Randomphone:            randomPhone,
+			Randomsecondaryaddress: randomLine2,
+			Randomlastname:         randomLast,
 		})
 	}
 
